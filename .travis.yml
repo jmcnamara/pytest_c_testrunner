@@ -2,6 +2,6 @@ language: c
 compiler:
   - clang
   - gcc
-install: "pip install pytest --use-mirrors"
+install: "pip install pytest"
 script: make && make test
 
