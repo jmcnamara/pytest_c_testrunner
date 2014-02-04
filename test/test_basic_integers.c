@@ -11,8 +11,8 @@
 void
 test_some_integers()
 {
-    ASSERT_EQUAL_INT(1,1);
-    ASSERT_EQUAL_INT(234,234);
+    ASSERT_EQUAL_INT(1, 1);
+    ASSERT_EQUAL_INT(234, 234);
 }
 
 void

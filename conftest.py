@@ -29,24 +29,30 @@ class CTestFile(pytest.File):
         C unit test executable.
 
         """
-
+        # Run the exe that corresponds to the .c file and capture the output.
         test_exe = str(self.fspath)[0:-2]
         test_output = subprocess.check_output(test_exe)
 
+        # Clean up the unit test output and remove non test data lines.
         lines = test_output.split("\n")
         lines = [line.strip() for line in lines]
         lines = [line for line in lines if line.startswith("[")]
 
+        # Extract the test metadata from the unit test output.
         test_results = []
         for line in lines:
             token, data = line.split(" ", 1)
             token = token[1:-1]
 
             if token in ("PASS", "FAIL"):
-                function_name, line_number = data.split(":")
+                file_name, function_name, line_number = data.split(":")
                 test_results.append({"condition": token,
+                                     "file_name": file_name,
                                      "function_name": function_name,
                                      "line_number": int(line_number),
+                                     "EXP": 'EXP(no data found)',
+                                     "GOT": 'GOT(no data found)',
+                                     "TST": 'TST(no data found)',
                                      })
             elif token in ("EXP", "GOT", "TST"):
                 test_results[-1][token] = data
@@ -79,7 +85,7 @@ class CTestItem(pytest.Item):
 
         """
         if isinstance(excinfo.value, CTestException):
-            return ("Test failed : {TST} at {function_name}:{line_number}\n"
+            return ("Test failed : {TST} at {file_name}:{line_number}\n"
                     "         got: {GOT}\n"
                     "    expected: {EXP}\n".format(**self.test_result))
 

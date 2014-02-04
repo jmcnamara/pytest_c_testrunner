@@ -15,7 +15,7 @@ endif
 INC_DIR = .
 
 # Flags passed to the C++ compiler.
-CFLAGS += -g -Wall -Wextra
+CFLAGS += -g -Wall -Wextra -Wno-nonnull
 
 # Source files to compile.
 SRCS = $(wildcard *.c)

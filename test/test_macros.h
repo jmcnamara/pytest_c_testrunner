@@ -11,25 +11,25 @@
 #define ASSERT_EQUAL_INT(exp, got)                                           \
     do {                                                                     \
         if ((exp) == (got)) {                                                \
-            printf("\n[PASS] %s():%d\n", __func__, __LINE__);                \
+            printf("\n[PASS] %s:%s():%d\n", __FILE__, __func__, __LINE__);   \
         }                                                                    \
         else {                                                               \
-            printf("\n[FAIL] %s():%d\n", __func__, __LINE__);                \
-            printf("  [TST] ASSERT_EQUAL_INT(%d, %d)\n", (exp), (got));      \
-            printf("  [EXP] %d\n", exp);                                     \
-            printf("  [GOT] %d\n", got);                                     \
+            printf("\n[FAIL] %s:%s():%d\n", __FILE__, __func__, __LINE__);   \
+            printf("  [TST] ASSERT_EQUAL_STR(" #exp ", " #got ")\n");        \
+            printf("  [EXP] %d\n", (exp));                                   \
+            printf("  [GOT] %d\n", (got));                                   \
         }                                                                    \
     } while (0);
 
 #define ASSERT_EQUAL_STR(exp, got)                                           \
     do {                                                                     \
         if ((exp) && (got) && strcmp((exp), (got)) == 0) {                   \
-            printf("\n[PASS] %s():%d\n", __func__, __LINE__);                \
+            printf("\n[PASS] %s:%s():%d\n", __FILE__, __func__, __LINE__);   \
         }                                                                    \
         else {                                                               \
-            printf("\n[FAIL] %s():%d\n", __func__, __LINE__);                \
-            printf("  [TST] ASSERT_EQUAL_STR(exp, got)\n");                  \
-            printf("  [EXP] %s\n", exp);                                     \
-            printf("  [GOT] %s\n", got);                                     \
+            printf("\n[FAIL] %s:%s():%d\n", __FILE__, __func__, __LINE__);   \
+            printf("  [TST] ASSERT_EQUAL_STR(" #exp ", " #got ")\n");        \
+            printf("  [EXP] %s\n", (exp) ? (exp) : "(null)");                \
+            printf("  [GOT] %s\n", (got) ? (got) : "(null)");                \
         }                                                                    \
     } while (0);
