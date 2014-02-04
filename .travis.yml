@@ -2,4 +2,6 @@ language: c
 compiler:
   - clang
   - gcc
+install: "sudo pip install pytest"
 script: make && make test
+
