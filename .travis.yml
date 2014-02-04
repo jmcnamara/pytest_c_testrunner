@@ -4,3 +4,4 @@ compiler:
   - gcc
 install: "pip install pytest --use-mirrors"
 script: make && make test
+
