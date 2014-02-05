@@ -17,6 +17,7 @@ TAGS
 .DS_Store
 __pycache__
 docs/html
+docs/build
 .deps
 .dirstamp
 test/test_*

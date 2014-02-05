@@ -20,7 +20,20 @@ all :
 # Clean the test executables.
 clean :
 	$(Q)make clean -C test
+	$(Q)make clean -C docs
 
 # Run the unit tests.
 test : all
 	$(Q)py.test test -v
+
+# Targets for documentation.
+html: docs
+
+docs:
+	$(Q)make -C docs html
+
+pdf:
+	$(Q)make -C docs latexpdf
+
+readthedocs:
+	curl -X POST http://readthedocs.org/build/pytest_c_testrunner

@@ -22,7 +22,8 @@ test_more_integers()
     ASSERT_EQUAL_INT(12, 2);
 }
 
-int main()
+int
+main()
 {
     test_some_integers();
     test_more_integers();
