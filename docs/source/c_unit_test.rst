@@ -30,13 +30,13 @@ For the sake of example say you have a test case like this:
         return 0;
     }
 
-And when you compile and run it you get ouput like this::
+And when you compile and run it you get output like this::
 
     $ test/test_basic_strings
 
-    [PASS] test_basic_strings.c:test_some_strings():16
+    [PASS] test_basic_strings.c:test_some_strings():8
 
-    [FAIL] test_basic_strings.c:test_some_strings():17
+    [FAIL] test_basic_strings.c:test_some_strings():9
       [TST] ASSERT_EQUAL_STR(foo, bar)
       [EXP] This is foo
       [GOT] This is bar
@@ -44,12 +44,14 @@ And when you compile and run it you get ouput like this::
 This is typical of a lot of test output and although the format is simple it
 contains a lot of useful information:
 
-* The Pass/Fail condition
-* The C file name
-* The function/test name
-* The line number of the test assertion
-* The assertion that failed
-* The expected and actual output
+* The Pass/Fail condition.
+* The C file name.
+* The function/test name.
+* The line number of the test assertion.
+* The assertion that failed.
+* The expected and actual output.
 
 So, let's see how we can run this or any number of similar tests automatically
 and capture and summarise the output.
+
+The first step is to write the :ref:`conftest`.

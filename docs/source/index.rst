@@ -3,6 +3,13 @@
 Pytest & C
 ==========
 
+.. toctree::
+   :hidden:
+
+   c_unit_test.rst
+   conftest.rst
+   running.rst
+   learn_more.rst
 
 Using pytest as a testrunner for C unit tests
 ---------------------------------------------
@@ -25,7 +32,7 @@ Are you sure that is a good idea?
 
 No. I'm pretty sure it isn't.
 
-If you need to write and run C unit tests then there are a lot of alternative
+If you want to write and run C unit tests then there are a lot of alternatives
 such as `googletest <https://code.google.com/p/googletest/>`_ or
 `Unity <http://throwtheswitch.org/white-papers/unity-intro.html>`_ which are
 generally better solutions.
@@ -36,13 +43,13 @@ So, what is the use case?
 
 Established C/C++ test frameworks and test runners are a better solution when
 you are starting a project from scratch. However, if you have existing C unit
-tests that you just want to execute then rewriting them to conform to a new
-framework or testrunner probably isn't worth the effort.
+tests that you just want to execute, then rewriting them to conform to a new
+framework probably isn't worth the effort.
 
-Equally, writing a testrunner that will run all or just a subset of the tests,
-that will dump the results into JUnit or other formats, that will filter
-results or display them in concise or verbose output probably isn't worth the
-effort either.
+Equally, writing a testrunner that will run all or a subset of the tests, that
+will dump the results into JUnit or other formats, that will filter results or
+display them in concise or verbose output probably isn't worth the effort
+either.
 
 In which case it would be better to use an existing testrunner that supports
 all these features and that can be easily extended to capture the output from
@@ -65,12 +72,4 @@ Okay. I'm still with you, but barely
 
 Then read on and I'll see if I can convince you with a working example.
 
-
-Contents
---------
-
-.. toctree::
-   :maxdepth: 1
-
-   c_unit_test.rst
-
+So let's start with :ref:`c_unit`.

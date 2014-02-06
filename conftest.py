@@ -13,7 +13,7 @@ def pytest_collect_file(parent, path):
     A hook into py.test to collect test_*.c test files.
 
     """
-    if path.ext == ".c" and path.basename.startswith("test"):
+    if path.ext == ".c" and path.basename.startswith("test_"):
         return CTestFile(path, parent)
 
 
@@ -78,13 +78,13 @@ class CTestItem(pytest.Item):
         if self.test_result["condition"] == "FAIL":
             raise CTestException(self, self.name)
 
-    def repr_failure(self, excinfo):
+    def repr_failure(self, exception):
         """
         Called when runtest() raises an exception. The method is used
         to format the output of the failed test result.
 
         """
-        if isinstance(excinfo.value, CTestException):
+        if isinstance(exception.value, CTestException):
             return ("Test failed : {TST} at {file_name}:{line_number}\n"
                     "         got: {GOT}\n"
                     "    expected: {EXP}\n".format(**self.test_result))
