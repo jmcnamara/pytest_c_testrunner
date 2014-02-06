@@ -108,7 +108,7 @@ the ``.c`` file and captures the output::
 
     def collect(self):
 
-        test_exe = str(self.fspath)[0:-2]
+        test_exe = os.path.splitext(str(self.fspath))[0]
         test_output = subprocess.check_output(test_exe)
 
 Extracting the test data
