@@ -26,6 +26,10 @@ clean :
 test : all
 	$(Q)py.test test -v
 
+# Run a passing test for TravisCI integration
+test_travis : all
+	$(Q)py.test test/test_passing.c -v
+
 # Targets for documentation.
 html: docs
 
