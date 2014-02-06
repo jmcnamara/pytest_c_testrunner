@@ -6,9 +6,9 @@ Running the Tests
 So finally we are at the stage where we can run the test cases.
 
 If you'd like to try this for yourself
-`this project is on GitHub <http://github.com/jmcnamara/pytest_c_testrunner>`_
-so that you can run the tests and try different options. The examples below
-show some of the more common ones.
+`the code is included in a project on GitHub <http://github.com/jmcnamara/pytest_c_testrunner>`_
+so that you try out different options. The examples below show some of the
+more common ones.
 
 
 The Default Output

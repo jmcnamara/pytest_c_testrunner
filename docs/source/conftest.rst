@@ -15,7 +15,7 @@ and collect the results. The nice thing about this is that we can create a
 hook layer between ``pytest`` and the C unit tests without changing code in
 either one.
 
-The ``conftest.py`` file is actually a per-directory file, so you can have
+The ``conftest.py`` file is actually a per-directory file, so we can have
 different files for different test directories if required.
 
 
@@ -28,10 +28,17 @@ First let's look at the C unit test ``conftest.py`` in its entirety:
    :lines: 7-
 
 
-This is less than 100 lines of Python including comments but it provides a lot
-of functionality. However, before we look at that functionality let's first
-look at the main parts of the ``conftest.py`` program.
+This is less than 100 lines of Python, including comments, but it provides a
+lot of functionality.
 
+If you would like to see this functionality in use then move on to
+:ref:`running`.
+
+If you are interested in seeing how this functionality is implemented, and how
+you could extend ``pytest`` for similar tests then read on below and we will
+see how the ``conftest.py`` code works.
+
+:ref:`running` or the Gory Details. Choose your own adventure!
 
 
 
@@ -67,13 +74,12 @@ subclasses have a ``collect()`` method which returns ``pytest.Items`` objects::
         def collect(self):
             # Returns pytest.Items.
 
-These ``pytest`` hierarchy and method concepts are explained in more detail in
-the
+The ``pytest`` hierarchy and methods are explained in more detail in the
 `Working with plugins and conftest files <http://pytest.org/latest/plugins.html>`_
-Pytest documentation.
+section of the Pytest documentation.
 
 Depending on the types of tests that are being run the collected items might be
-individual test results or even test cases that are being stage to run.
+individual test results or even test cases that are being staged to run.
 
 However, in our case we are going to take a simplified approach that lends
 itself to statically compiled test cases such as C unit tests:
@@ -93,15 +99,15 @@ tests and capture the output.
 
 As stated above we are going to assume that the C unit tests are structured so
 that for each ``test_something.c`` source file there is a ``test_something``
-executable. This is a reasonably assumption based on the way most test suites
+executable. This is a reasonable assumption based on the way most test suites
 are laid out but it may not hold for specific implementations where, for
 example, multiple ``.c`` files might be compiled to object files and linked
-into a single test runner executable. For cases like that more sophisticated
-``pytest_collect_file()`` can be used.
+into a single test runner executable. For cases like that more a sophisticated
+``pytest_collect_file()`` implementation can be used.
 
-For the sake of this exercise we are going to assume that the unit test
-executables are tied into a build system and have already been built via
-``make``, ``make test`` or something similar.
+We are also going to assume, again reasonably, that the unit test executables
+are tied into a build system and have already been built via ``make``,
+``make test`` or something similar.
 
 In ``conftest.py`` the following code runs the executable that corresponds to
 the ``.c`` file and captures the output::
@@ -111,10 +117,13 @@ the ``.c`` file and captures the output::
         test_exe = os.path.splitext(str(self.fspath))[0]
         test_output = subprocess.check_output(test_exe)
 
+A more robust implementation would probably confirm the existence of the
+executable and return a fail condition if it wasn't present.
+
 Extracting the test data
 ------------------------
 
-The captured output will look something like the following in our case::
+In our case the captured output will look something like the following::
 
     [PASS] test_basic_strings.c:test_some_strings():8
 
@@ -131,7 +140,7 @@ We clean up the unit test output and remove non test data lines as follows::
         lines = [line for line in lines if line.startswith("[")]
 
 
-We then extract the test metadata from the unit test output::
+We then extract the test metadata from the reformatted test output::
 
         test_results = []
         for line in lines:
@@ -173,8 +182,8 @@ Formatting the test report
 --------------------------
 
 The ``pytest.Item`` that we return in the previous step is an instance of a
-subclass so that we control the test result formatting. We also override the
-constructor so that we can pass the test result data structure as an
+subclass so that we can control the test result formatting. We also override
+the constructor so that we can pass the test result data structure as an
 additional parameter::
 
     class CTestItem(pytest.Item):
@@ -210,8 +219,12 @@ Finally we provide one additional piece of information that will be used in
 verbose test display::
 
         def reportinfo(self):
-            """"Called to display header information about the test case."""
             return self.fspath, self.test_result["line_number"] - 1, self.name
 
+Achievement Unlocked
+--------------------
 
-So now let's see how to we go about :ref:`running`.
+Congratulations. You made it to the end of the code and have unlocked the
+**Adventurous** badge.
+
+Now let's see how to we go about :ref:`running`.

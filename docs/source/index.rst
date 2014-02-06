@@ -32,24 +32,24 @@ Are you sure that is a good idea?
 
 No. I'm pretty sure it isn't.
 
-If you want to write and run C unit tests then there are a lot of alternatives
-such as `googletest <https://code.google.com/p/googletest/>`_ or
-`Unity <http://throwtheswitch.org/white-papers/unity-intro.html>`_ which are
-generally better solutions.
+If you want to write and run C unit tests then there are a lot of better
+alternatives such as
+`Unity <http://throwtheswitch.org/white-papers/unity-intro.html>`_ or
+`GoogleTest <https://code.google.com/p/googletest/>`_ (for C/C++ testing) or
+`many others <http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#C>`_.
 
 
 So, what is the use case?
 -------------------------
 
-Established C/C++ test frameworks and test runners are a better solution when
-you are starting a project from scratch. However, if you have existing C unit
-tests that you just want to execute, then rewriting them to conform to a new
-framework probably isn't worth the effort.
+Established C test frameworks are a better alternative when you are starting a
+project from scratch. However, if you have existing C unit tests that you just
+want to execute, then rewriting them to conform to a new framework probably
+isn't worth the effort.
 
-Equally, writing a testrunner that will run all or a subset of the tests, that
-will dump the results into JUnit or other formats, that will filter results or
-display them in concise or verbose output probably isn't worth the effort
-either.
+Equally, writing a testrunner that is flexible enough to run all or a subset
+of the tests, that can output the results in JUnit or other formats, or that
+can filter results into concise reports probably isn't worth the effort either.
 
 In which case it would be better to use an existing testrunner that supports
 all these features and that can be easily extended to capture the output from
