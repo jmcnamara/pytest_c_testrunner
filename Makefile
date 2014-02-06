@@ -36,4 +36,4 @@ pdf:
 	$(Q)make -C docs latexpdf
 
 readthedocs:
-	curl -X POST http://readthedocs.org/build/pytest_c_testrunner
+	curl -X POST http://readthedocs.org/build/pytest-c-testrunner
