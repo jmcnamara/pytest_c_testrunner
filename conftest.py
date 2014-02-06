@@ -6,6 +6,7 @@
 #
 import subprocess
 import pytest
+import os
 
 
 def pytest_collect_file(parent, path):
@@ -30,7 +31,7 @@ class CTestFile(pytest.File):
 
         """
         # Run the exe that corresponds to the .c file and capture the output.
-        test_exe = str(self.fspath)[0:-2]
+        test_exe = os.path.splitext(str(self.fspath))[0]
         test_output = subprocess.check_output(test_exe)
 
         # Clean up the unit test output and remove non test data lines.
