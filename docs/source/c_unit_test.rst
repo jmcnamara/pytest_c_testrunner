@@ -5,7 +5,7 @@ The C Unit Tests
 
 This isn't about how to write C unit tests.
 
-The assumption is that we already have working tests that we just want to run
+The assumption is that you already have working tests that you just want to run
 and that these tests output some sort of Pass/Fail information.
 
 For the sake of example say we have a test case like this:

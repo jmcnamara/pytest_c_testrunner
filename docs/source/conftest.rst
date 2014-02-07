@@ -123,7 +123,13 @@ executable and return a fail condition if it wasn't present.
 Extracting the test data
 ------------------------
 
-In our case the captured output will look something like the following::
+This section of the code shows the main functionality that converts the output
+of the test cases into a format that can be used by ``pytest``. If you are
+using this document as a guide to running your own tests then this section is
+the part that you will have to modify to conform to your test output.
+
+In our sample unit test the captured output will look something like the
+following::
 
     [PASS] test_basic_strings.c:test_some_strings():8
 
@@ -171,12 +177,16 @@ like the following::
      'GOT':           'This is bar',
      'line_number':   9 }
 
-
-
 These results are then returned as a ``pytest.Item``::
 
         for test_result in test_results:
             yield CTestItem(test_result["function_name"], self, test_result)
+
+Note, it isn't essential that we capture all of the information shown above.
+None of it is strictly required by ``pytest`` apart from the test function
+name. The idea here is that we try to capture any usefule information that we
+want to display in the testrunner output. In the next section we will see how
+we can format and display that information.
 
 Formatting the test report
 --------------------------
