@@ -1,12 +1,14 @@
 
 ## Using `pytest` as a testrunner for C unit test files
 
-This is an simple explanation of how to use [`pytest`](http://pytest.org/latest/index.html) as a testrunner for C unit tests with a working example.
+This is an simple tutorial on how to use [`pytest`](http://pytest.org/latest/index.html) as a testrunner for C unit tests
+
+It includes documentation and working examples.
 
 ![image](https://raw.github.com/jmcnamara/pytest_c_testrunner/master/docs/source/_images/output.png)
 
 
-The `pytest` module collects the C unit test files, executes them, captures the output and displays it.
+The `pytest` module is used to collect the C unit test files, execute them, capture the output and displays it.
 
 
     $ sudo pip install pytest
