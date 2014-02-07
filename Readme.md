@@ -1,9 +1,9 @@
 
 ## Using `pytest` as a testrunner for C unit test files
 
-This is an simple tutorial on how to use [`pytest`](http://pytest.org/latest/index.html) as a testrunner for C unit tests
+This is an simple tutorial on how to use [`pytest`](http://pytest.org/latest/index.html) as a testrunner for C unit tests.
 
-It includes documentation and working examples.
+It includes [documentation](http://pytest-c-testrunner.readthedocs.org) and working examples.
 
 ![image](https://raw.github.com/jmcnamara/pytest_c_testrunner/master/docs/source/_images/output.png)
 
