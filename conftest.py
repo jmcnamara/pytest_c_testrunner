@@ -35,7 +35,7 @@ class CTestFile(pytest.File):
         test_output = subprocess.check_output(test_exe)
 
         # Clean up the unit test output and remove non test data lines.
-        lines = test_output.split("\n")
+        lines = test_output.decode().split("\n")
         lines = [line.strip() for line in lines]
         lines = [line for line in lines if line.startswith("[")]
 
